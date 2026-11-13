@@ -109,29 +109,6 @@
     };
   }
 
-  async function fetchPageHtml(url) {
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const response = await fetch(proxyUrl, {
-      method: "GET",
-      headers: { Accept: "application/json" }
-    });
-
-    if (!response.ok) {
-      throw new Error(`CORS proxy returned HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-    const upstreamStatus = Number(data.status?.http_code);
-    if (upstreamStatus >= 400) {
-      throw new Error(`Source returned HTTP ${upstreamStatus}`);
-    }
-    if (typeof data.contents !== "string") {
-      throw new Error("CORS proxy response did not contain page content");
-    }
-
-    return data.contents;
-  }
-
   async function crawl(inputUrl) {
     let start;
     try {
@@ -193,19 +170,59 @@ async function visit(rawUrl, inheritedLabel = "", depth = 0) {
     }
 
     try {
-        const html = await fetchPageHtml(page.href);
-        const parsed = parsePage(html, page.href, !paginationFound);
+        const response = await fetch(page.href, {
+            method: "GET",
+            redirect: "follow",
+            headers: { Accept: "text/html" }
+        });
+
+        const finalUrl = response.url || page.href;
+        const contentType = (response.headers.get("content-type") || "").toLowerCase();
+        if (
+            isDirectMedia(finalUrl) ||
+            contentType.startsWith("video/") ||
+            contentType.startsWith("audio/") ||
+            contentType.includes("application/octet-stream")
+        ) {
+            addVideo(
+                finalUrl,
+                inheritedLabel || new URL(finalUrl).pathname.split("/").pop() || "Video",
+                true,
+                page.href
+            );
+            if (response.body) {
+                try {
+                    await response.body.cancel();
+                } catch {}
+            }
+            return;
+        }
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (
+            !contentType.includes("text/html") &&
+            !contentType.includes("application/xhtml+xml")
+        ) {
+            if (response.body) {
+                try {
+                    await response.body.cancel();
+                } catch {}
+            }
+            return;
+        }
+
+        const parsed = parsePage(await response.text(), finalUrl, !paginationFound);
         if (parsed.pagination?.found) {
             paginationFound = true;
             paginationTotalPages = Math.min(parsed.pagination.totalPages, MAX_PAGINATION_PAGES);
-            paginationUrl = page.href;
+            paginationUrl = finalUrl;
             console.info(`[get.js] Pagination found: ${paginationTotalPages} total pages.`);
         }
 
         parsed.links.forEach(link => links.set(link.url, link));
 
         parsed.directVideos.forEach(url =>
-            addVideo(url, inheritedLabel || "Embedded video", true, page.href)
+            addVideo(url, inheritedLabel || "Embedded video", true, finalUrl)
         );
 
         const serverLinks = parsed.links.filter(
