@@ -558,32 +558,10 @@
   </dialog>
   <footer>Made for movie nights and everything in between.</footer>
 
-  <script src="./get.js"></script>
+  <script src="https://raw.githubusercontent.com/Nova-07-2346/movDa/refs/heads/main/get.js"></script>
   <script>
     "use strict";
     const SOURCE_URL = "https://moviezda.co/moviesda-tamil-movies-2026/";
-    async function fetchSourceHtml(url, options = {}) {
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      const response = await fetch(proxyUrl, {
-        method: "GET",
-        headers: { Accept: "application/json" },
-        signal: options.signal
-      });
-      if (!response.ok) {
-        throw new Error(`CORS proxy returned HTTP ${response.status}.`);
-      }
-
-      const data = await response.json();
-      const upstreamStatus = Number(data.status?.http_code);
-      if (upstreamStatus >= 400) {
-        throw new Error(`The source returned HTTP ${upstreamStatus}.`);
-      }
-      if (typeof data.contents !== "string") {
-        throw new Error("CORS proxy response did not contain page content.");
-      }
-      return data.contents;
-    }
-
     const MOVIE_CACHE_KEY = "moviesda-home-v1";
     const PAGE_SIZE = 10;
     const status = document.querySelector("#status");
@@ -1011,10 +989,6 @@
       return `${title} S${seasonNumber} E${episodeNumber}${resolution ? ` ${resolution}p` : ""}`;
     }
 
-    async function getMovieVideoPages(movieUrl) {
-      return window.GetAllVideoUrl(movieUrl);
-    }
-
 
     async function loadMovieVideo(movie, requestId) {
       resetMovieVideo();
@@ -1030,10 +1004,8 @@
           if (typeof window.GetAllVideoUrl !== "function") {
             throw new Error("The video URL finder could not be loaded.");
           }
-
-          const result = await getMovieVideoPages(movie.url);
+          const result = await window.GetAllVideoUrl(movie.url);
           if (result.error) throw new Error(result.error);
-
           choices = [...result.videos]
             .filter(video => !video.url.startsWith("https://movie"))
             .sort((left, right) =>
@@ -1276,7 +1248,9 @@
       if (movie.url && !movie.details) {
         priorityLoads.push((async () => {
           try {
-            const details = extractDetails(await fetchSourceHtml(movie.url), movie);
+            const response = await fetch(movie.url, { headers: { Accept: "text/html" } });
+            if (!response.ok) throw new Error(`The source returned HTTP ${response.status}.`);
+            const details = extractDetails(await response.text(), movie);
             movie.details = details;
             saveMovieCache();
             if (requestId !== detailRequestId || activeMovie !== movie) return;
@@ -1364,7 +1338,9 @@
         }
         const url = new URL(SOURCE_URL);
         url.searchParams.set("page", String(sourcePage));
-        const nextMovies = extractMovies(await fetchSourceHtml(url.href, { signal: controller.signal }));
+        const response = await fetch(url.href, { headers: { Accept: "text/html" }, signal: controller.signal });
+        if (!response.ok) throw new Error(`The source returned HTTP ${response.status}.`);
+        const nextMovies = extractMovies(await response.text());
         if (backgroundLoadPaused || controller.signal.aborted) return null;
         const knownUrls = new Set(movies.map(movie => movie.url).filter(Boolean));
         const additions = nextMovies.filter(movie => !movie.url || !knownUrls.has(movie.url));
@@ -1454,7 +1430,9 @@
     async function loadMovies() {
       hasCachedMovies = restoreMovieCache();
       try {
-        const freshMovies = extractMovies(await fetchSourceHtml(SOURCE_URL));
+        const response = await fetch(SOURCE_URL, { headers: { Accept: "text/html" } });
+        if (!response.ok) throw new Error(`The source returned HTTP ${response.status}.`);
+        const freshMovies = extractMovies(await response.text());
         if (!freshMovies.length) {
           status.textContent = movies.length
             ? "No new movie posters were found. Showing saved movies."
@@ -1478,7 +1456,7 @@
         status.classList.add("error");
         status.textContent = hasCachedMovies
           ? `Could not refresh movie listings. Showing saved movies. ${error.message}`
-          : `Could not load movie listings. ${error.message} The CORS proxy may be unavailable or the source may have rejected the request.`;
+          : `Could not load movie listings. ${error.message} The source may block browser requests (CORS); try opening this page through a local server or configure a permitted proxy.`;
       }
     }
 
