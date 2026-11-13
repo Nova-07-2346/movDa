@@ -1,0 +1,1531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="Browse the latest Tamil movie listings for 2026 by genre.">
+  <title>Moviesda — Tamil 2026 Latest</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #10110f;
+      color: #f6f4ee;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      --surface: #181a17;
+      --muted: #a4a69e;
+      --accent: #d3f36b;
+      --line: rgba(255,255,255,.1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -18%, rgba(119, 133, 71, .12), transparent 40rem),
+        #10110f;
+    }
+    button, input { font: inherit; }
+    .topbar {
+      position: sticky;
+      z-index: 5;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      min-height: 76px;
+      padding: 0 clamp(20px, 6vw, 88px);
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      background: rgba(16, 17, 15, .84);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f6f4ee;
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #171a10;
+      font-size: .9rem;
+      letter-spacing: -.08em;
+    }
+    .nav-label {
+      padding-left: 26px;
+      border-left: 1px solid var(--line);
+      color: #c3c4bc;
+      font-size: .88rem;
+    }
+    .search {
+      width: min(330px, 42vw);
+      height: 42px;
+      margin-left: auto;
+      padding: 0 15px 0 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      outline: none;
+      background: #1b1d19 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23989b8f' stroke-width='1.8' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m16 16 4 4'/%3E%3C/svg%3E") no-repeat 15px center;
+      color: #fff;
+      transition: border-color .2s, background-color .2s, box-shadow .2s;
+    }
+    .search::placeholder { color: #85877f; }
+    .search:focus { border-color: rgba(211,243,107,.65); box-shadow: 0 0 0 3px rgba(211,243,107,.1); }
+    a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 395px;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .75fr);
+      align-items: center;
+      gap: 36px;
+      padding: 54px clamp(20px, 8vw, 116px) 62px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 47%, rgba(152, 174, 87, .15), transparent 31%),
+        linear-gradient(115deg, #191b16 0%, #171914 55%, #202119 100%);
+    }
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 54px 54px;
+      content: "";
+      mask-image: linear-gradient(90deg, transparent, #000 65%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 650px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 20px; height: 1px; background: currentColor; content: ""; }
+    h1 {
+      max-width: 700px;
+      margin: 19px 0 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 6.5vw, 5.7rem);
+      font-weight: 500;
+      letter-spacing: -.065em;
+      line-height: .96;
+    }
+    h1 span { color: var(--accent); font-style: italic; }
+    .intro { max-width: 470px; margin: 0; color: #b7b9af; font-size: 1rem; line-height: 1.75; }
+    .hero-link {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      gap: 13px;
+      margin-top: 27px;
+      padding: 0 19px;
+      border: 1px solid rgba(211,243,107,.4);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #171a10;
+      font-size: .86rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+    .hero-link:hover { transform: translateY(-2px); background: #e0ff83; }
+    .hero-link span { font-size: 1.15rem; }
+    .hero-art {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 390px);
+      height: 260px;
+      justify-self: center;
+      perspective: 700px;
+    }
+    .film-frame {
+      position: absolute;
+      top: 4px;
+      right: 18%;
+      width: 174px;
+      height: 242px;
+      overflow: hidden;
+      border: 5px solid rgba(246,244,238,.84);
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 51% 42%, rgba(247,195,112,.95) 0 7%, transparent 8%),
+        radial-gradient(ellipse at 51% 72%, #241d1c 0 24%, transparent 25%),
+        linear-gradient(155deg, transparent 22%, rgba(12,16,13,.4) 23% 46%, transparent 47%),
+        linear-gradient(28deg, #bf7047, #e1b06d 40%, #4d5543 72%, #242b26);
+      box-shadow: 0 28px 65px rgba(0,0,0,.4);
+      content: "";
+      transform: rotate(7deg);
+    }
+    .film-frame::before {
+      position: absolute;
+      inset: 65% 0 0;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      padding-bottom: 20px;
+      background: linear-gradient(transparent, rgba(13,15,12,.84));
+      color: #f8e6c6;
+      content: "THE BIG SCREEN";
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .65rem;
+      letter-spacing: .22em;
+    }
+    .art-card {
+      position: absolute;
+      top: 55px;
+      right: 59%;
+      width: 118px;
+      height: 164px;
+      border: 4px solid rgba(246,244,238,.76);
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 50% 40%, #c78653 0 9%, transparent 10%),
+        radial-gradient(ellipse at 50% 72%, #35312b 0 26%, transparent 27%),
+        linear-gradient(145deg, #33443c, #b37b4c 50%, #282b25);
+      box-shadow: 0 22px 44px rgba(0,0,0,.34);
+      transform: rotate(-11deg);
+    }
+    .art-note {
+      position: absolute;
+      right: 2%;
+      bottom: 5px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      background: rgba(25,27,23,.9);
+      color: #e7e8df;
+      font-size: .7rem;
+      letter-spacing: .04em;
+      box-shadow: 0 12px 32px rgba(0,0,0,.22);
+    }
+    main { padding: 17px clamp(20px, 6vw, 88px) 80px; }
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 30px 0 22px;
+    }
+    .section-title-wrap { display: flex; align-items: baseline; gap: 13px; min-width: 0; }
+    h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 500; letter-spacing: -.04em; }
+    .count { color: var(--muted); font-size: .82rem; }
+    .keyboard-hint { margin: 0; color: #85877f; font-size: .78rem; }
+    .movie-section { min-width: 0; margin-bottom: 36px; }
+    .status { min-height: 24px; margin: 0 0 15px; color: #aeb0a7; font-size: .88rem; }
+    .status:empty { display: none; }
+    .status.error { padding: 14px 17px; border: 1px solid rgba(255,130,130,.22); border-radius: 10px; background: rgba(116,35,35,.12); color: #ffaaa7; }
+    .grid, .similar-grid { scroll-behavior: smooth; }
+    .grid { display: flex; gap: 20px; overflow-x: auto; padding: 8px 4px 16px; scroll-snap-type: x mandatory; scrollbar-color: #55594b #1b1d19; }
+    .card {
+      display: block;
+      flex: 0 0 clamp(118px, 9vw, 154px);
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      scroll-snap-align: start;
+      transition: transform .25s ease;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card:focus { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 9px; }
+    .card:focus .poster { border-color: var(--accent); }
+    .poster {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 9px;
+      background: linear-gradient(145deg, #292c25, #191b17);
+      box-shadow: 0 12px 28px rgba(0,0,0,.24);
+    }
+    .poster::after {
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.23));
+      content: "";
+      pointer-events: none;
+    }
+    .poster img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+    .card:hover .poster img { transform: scale(1.045); }
+    .poster-placeholder {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      place-items: center;
+      padding: 18px;
+      color: #b7b9af;
+      text-align: center;
+      font-size: .85rem;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .rating {
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      right: 10px;
+      padding: 6px 9px;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 999px;
+      background: rgba(15,16,14,.82);
+      color: #f3f2e9;
+      font-size: .72rem;
+      font-weight: 750;
+      backdrop-filter: blur(6px);
+    }
+    .movie-title { margin: 13px 0 6px; overflow: hidden; font-size: .94rem; font-weight: 700; letter-spacing: -.015em; text-overflow: ellipsis; white-space: nowrap; }
+    .genre { margin: 0; overflow: hidden; color: #96988f; font-size: .77rem; text-overflow: ellipsis; white-space: nowrap; }
+    .empty { padding: 28px 20px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); text-align: center; }
+    .movie-dialog {
+      width: min(900px, calc(100% - 32px));
+      max-width: 900px;
+      max-height: min(88vh, 900px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 16px;
+      background: #171915;
+      color: #f6f4ee;
+      box-shadow: 0 30px 100px rgba(0,0,0,.7);
+    }
+    .movie-dialog::backdrop { background: rgba(5,6,5,.78); backdrop-filter: blur(7px); }
+    .dialog-content { padding: clamp(20px, 4vw, 36px); }
+    .dialog-top { display: flex; justify-content: flex-end; }
+    .dialog-close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #22241f;
+      color: #f6f4ee;
+      cursor: pointer;
+      font-size: 1.35rem;
+    }
+    .dialog-close:focus-visible, .similar-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .detail-layout { display: grid; grid-template-columns: minmax(160px, 250px) minmax(0, 1fr); gap: clamp(22px, 4vw, 40px); align-items: start; }
+    .detail-poster { width: 100%; aspect-ratio: 2 / 3; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #22241f; }
+    .detail-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .detail-collection { margin: 0 0 10px; color: var(--accent); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .detail-title { margin: 0 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 500; letter-spacing: -.04em; }
+    .detail-rating { display: inline-block; margin-bottom: 16px; padding: 6px 10px; border: 1px solid rgba(211,243,107,.3); border-radius: 999px; color: var(--accent); font-size: .86rem; }
+    .detail-list { display: grid; grid-template-columns: minmax(100px, .34fr) 1fr; gap: 12px 18px; margin: 0; }
+    .detail-list dt { color: var(--muted); }
+    .detail-list dd { margin: 0; color: #f0efe8; line-height: 1.5; }
+    .detail-synopsis { margin: 24px 0 0; color: #c3c4bc; line-height: 1.7; }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .detail-button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid rgba(211,243,107,.4);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #171a10;
+      cursor: pointer;
+      font: inherit;
+      font-size: .88rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .detail-button:hover:not(:disabled):not([aria-disabled="true"]) { background: #e0ff83; }
+    .detail-button:disabled, .detail-button[aria-disabled="true"] { cursor: not-allowed; opacity: .48; }
+    .detail-video-status { min-height: 1.3em; margin: 12px 0 0; color: var(--muted); font-size: .85rem; }
+    .download-list {
+      position: fixed;
+      z-index: 30;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(5, 6, 5, .76);
+      backdrop-filter: blur(8px);
+    }
+    .download-list[hidden] { display: none; }
+    .download-popup {
+      width: min(390px, 100%);
+      max-height: min(75vh, 560px);
+      overflow: auto;
+      padding: 22px;
+      border: 1px solid rgba(211,243,107,.26);
+      border-radius: 16px;
+      background: linear-gradient(155deg, #20231c, #141612 72%);
+      box-shadow: 0 24px 80px rgba(0,0,0,.62);
+    }
+    .download-popup-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 7px;
+    }
+    .download-popup-title { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.5rem; font-weight: 500; }
+    .download-popup-hint { margin: 0 0 18px; color: var(--muted); font-size: .83rem; }
+    .download-popup-close {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #ffffff0b;
+      color: #f6f4ee;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .download-options { display: grid; gap: 9px; }
+    .download-option {
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      background: rgba(255,255,255,.045);
+      color: #f6f4ee;
+      font-size: .9rem;
+      font-weight: 750;
+      text-decoration: none;
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+    .download-option::after { color: var(--accent); content: "↓"; font-size: 1.15rem; }
+    .download-option:hover { transform: translateY(-1px); border-color: rgba(211,243,107,.48); background: rgba(211,243,107,.09); }
+    .play-loading-screen {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(5, 7, 11, .96);
+      color: #fff;
+      text-align: center;
+    }
+    .play-loading-screen[hidden] { display: none; }
+    .play-loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255,255,255,.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: player-spin .8s linear infinite;
+    }
+    @keyframes player-spin { to { transform: rotate(360deg); } }
+    .detail-quality {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .detail-quality[hidden] { display: none; }
+    .detail-quality select {
+      min-height: 42px;
+      padding: 0 32px 0 13px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      background: #22241f;
+      color: #f6f4ee;
+      font: inherit;
+    }
+    .detail-quality select:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .detail-status { margin: 16px 0 0; color: var(--muted); font-size: .85rem; }
+    .similar-heading { margin: 34px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.55rem; font-weight: 500; }
+    .similar-grid { display: flex; gap: 14px; overflow-x: auto; padding: 16px 4px 8px; }
+    .similar-card { flex: 0 0 112px; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; font: inherit; text-align: left; }
+    .similar-card img { display: block; width: 100%; aspect-ratio: 2 / 3; border: 1px solid var(--line); border-radius: 7px; background: #22241f; object-fit: cover; }
+    .similar-card span { display: block; margin-top: 8px; overflow: hidden; font-size: .8rem; text-overflow: ellipsis; white-space: nowrap; }
+    footer { padding: 22px clamp(20px, 6vw, 88px) 30px; border-top: 1px solid rgba(255,255,255,.07); color: #777970; font-size: .76rem; text-align: center; }
+    @media (max-width: 760px) {
+      .hero { min-height: 350px; grid-template-columns: minmax(0, 1fr) 220px; gap: 10px; padding-top: 45px; padding-bottom: 48px; }
+      .hero-art { transform: scale(.8); transform-origin: center right; }
+      .grid { gap: 15px; }
+      .card { flex-basis: 132px; }
+    }
+    @media (max-width: 600px) {
+      .topbar { gap: 16px; min-height: 66px; padding-inline: 18px; }
+      .brand { font-size: .9rem; }
+      .brand-mark { width: 28px; height: 28px; }
+      .nav-label { display: none; }
+      .search { width: min(230px, 54vw); height: 39px; padding-right: 12px; font-size: .82rem; }
+      .hero { min-height: 355px; grid-template-columns: minmax(0, 1fr); padding: 48px 22px; }
+      .hero-content { max-width: 480px; }
+      h1 { max-width: 420px; font-size: clamp(3.1rem, 13vw, 4.3rem); }
+      .intro { max-width: 390px; font-size: .92rem; }
+      .hero-art { position: absolute; right: -40px; bottom: -38px; width: 235px; height: 210px; opacity: .46; transform: scale(.72); transform-origin: bottom right; }
+      .hero-link { position: relative; z-index: 1; }
+      main { padding: 8px 18px 58px; }
+      .section-heading { align-items: baseline; margin-top: 25px; }
+      .grid { gap: 14px; }
+      .card { flex-basis: 42vw; max-width: 170px; }
+      .detail-layout { grid-template-columns: 105px minmax(0, 1fr); gap: 16px; }
+      .detail-list { grid-template-columns: 1fr; gap: 4px; }
+      .detail-list dd { margin-bottom: 9px; }
+      .similar-card { flex-basis: 96px; }
+    }
+    @media (max-width: 380px) {
+      .topbar { gap: 12px; padding-inline: 14px; }
+      .brand { gap: 7px; font-size: .82rem; }
+      .brand-mark { width: 26px; height: 26px; }
+      .search { width: min(150px, 46vw); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Moviesda home"><span class="brand-mark" aria-hidden="true">M</span>MOVIESDA</a>
+    <span class="nav-label">The Tamil film collection</span>
+    <input class="search" id="search" type="search" placeholder="Search movies..." aria-label="Search movies">
+  </header>
+
+  
+  <main>
+    <div class="section-heading">
+      <div class="section-title-wrap">
+        <h2 id="collection-title">Latest Movies</h2>
+        <span class="count" id="latest-count"></span>
+      </div>
+      <p class="keyboard-hint">Use arrow keys to browse; press Enter for details.</p>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite">Loading latest movies...</p>
+    <section class="movie-section" aria-labelledby="collection-title">
+      <div class="grid" id="latest-movies"></div>
+    </section>
+    <div id="genre-sections"></div>
+  </main>
+  <dialog class="movie-dialog" id="movie-dialog" aria-labelledby="detail-title">
+    <div class="play-loading-screen" id="play-loading-screen" role="status" aria-live="polite" hidden>
+      <span class="play-loading-spinner" aria-hidden="true"></span>
+      <p>Loading video links...</p>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-top">
+        <button class="dialog-close" id="dialog-close" type="button" aria-label="Close movie details">×</button>
+      </div>
+      <div id="movie-details"></div>
+      <div class="detail-actions">
+        <label class="detail-quality" id="video-quality-wrap" hidden>
+          <span>Quality</span>
+          <select id="video-quality" aria-label="Video quality" disabled></select>
+        </label>
+        <button class="detail-button" id="play-movie" type="button" disabled>Play</button>
+        <button class="detail-button" id="download-movie" type="button" disabled>Download</button>
+      </div>
+      <div class="download-list" id="download-list" hidden>
+        <section class="download-popup" role="dialog" aria-modal="true" aria-labelledby="download-popup-title">
+          <div class="download-popup-header">
+            <h2 class="download-popup-title" id="download-popup-title">Choose a download</h2>
+            <button class="download-popup-close" id="download-popup-close" type="button" aria-label="Close download options">×</button>
+          </div>
+          <p class="download-popup-hint">Select the video quality you want.</p>
+          <div class="download-options" id="download-options"></div>
+        </section>
+      </div>
+      <p class="detail-video-status" id="detail-video-status" role="status" aria-live="polite"></p>
+      <p class="detail-status" id="detail-status" role="status" aria-live="polite"></p>
+      <h2 class="similar-heading">More like this</h2>
+      <div class="similar-grid" id="similar-movies"></div>
+    </div>
+  </dialog>
+  <footer>Made for movie nights and everything in between.</footer>
+
+  <script src="./get.js"></script>
+  <script>
+    "use strict";
+    const SOURCE_URL = "https://moviezda.co/moviesda-tamil-movies-2026/";
+    async function fetchSourceHtml(url, options = {}) {
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+      const response = await fetch(proxyUrl, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        signal: options.signal
+      });
+      if (!response.ok) {
+        throw new Error(`CORS proxy returned HTTP ${response.status}.`);
+      }
+
+      const data = await response.json();
+      const upstreamStatus = Number(data.status?.http_code);
+      if (upstreamStatus >= 400) {
+        throw new Error(`The source returned HTTP ${upstreamStatus}.`);
+      }
+      if (typeof data.contents !== "string") {
+        throw new Error("CORS proxy response did not contain page content.");
+      }
+      return data.contents;
+    }
+
+    const MOVIE_CACHE_KEY = "moviesda-home-v1";
+    const PAGE_SIZE = 10;
+    const status = document.querySelector("#status");
+    const latestGrid = document.querySelector("#latest-movies");
+    const latestCount = document.querySelector("#latest-count");
+    const genreSections = document.querySelector("#genre-sections");
+    const search = document.querySelector("#search");
+    const movieDialog = document.querySelector("#movie-dialog");
+    const movieDetails = document.querySelector("#movie-details");
+    const detailStatus = document.querySelector("#detail-status");
+    const detailVideoStatus = document.querySelector("#detail-video-status");
+    const videoQualityWrap = document.querySelector("#video-quality-wrap");
+    const videoQuality = document.querySelector("#video-quality");
+    const playMovie = document.querySelector("#play-movie");
+    const downloadMovie = document.querySelector("#download-movie");
+    const downloadList = document.querySelector("#download-list");
+    const downloadOptions = document.querySelector("#download-options");
+    const downloadPopupClose = document.querySelector("#download-popup-close");
+    const playLoadingScreen = document.querySelector("#play-loading-screen");
+    const similarMovies = document.querySelector("#similar-movies");
+    const dialogClose = document.querySelector("#dialog-close");
+    let movies = [];
+    let sourcePage = 2;
+    let hasMoreSourcePages = true;
+    let activeMovie = null;
+    let lastFocusedMovie = null;
+    let pendingFocusMovie = null;
+    let loadingPages = false;
+    let initialPageLoaded = false;
+    let backgroundLoadPaused = false;
+    let backgroundLoadPromise = null;
+    let backgroundPageController = null;
+    let backgroundResume = null;
+    let pendingFreshMovies = null;
+    let hasCachedMovies = false;
+    let detailRequestId = 0;
+    const videoLinkCache = new Map();
+    let activeVideoChoices = [];
+    let selectedVideo = null;
+    let videoLinksLoading = false;
+    let pendingPlayback = false;
+    let pendingDownload = false;
+
+    function cleanText(value) {
+      return String(value || "").replace(/\s+/g, " ").trim();
+    }
+
+    function saveMovieCache() {
+      try {
+        localStorage.setItem(MOVIE_CACHE_KEY, JSON.stringify({
+          sourceUrl: SOURCE_URL,
+          savedAt: Date.now(),
+          movies
+        }));
+      } catch (error) {
+        console.warn("Could not save the movie listing cache.", error);
+      }
+    }
+
+    function restoreMovieCache() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(MOVIE_CACHE_KEY) || "null");
+        if (cached?.sourceUrl !== SOURCE_URL || !Array.isArray(cached.movies)) return false;
+        movies = cached.movies.filter(movie =>
+          movie &&
+          typeof movie.title === "string" &&
+          typeof movie.genre === "string" &&
+          typeof movie.url === "string"
+        );
+        if (!movies.length) return false;
+        hasCachedMovies = true;
+        render();
+        status.textContent = "Showing saved movies while checking for updates...";
+        return true;
+      } catch (error) {
+        console.warn("Could not read the saved movie listing cache.", error);
+        return false;
+      }
+    }
+
+    function findMovieCard(poster) {
+      let node = poster;
+      while (node && node !== document.body) {
+        if (node.querySelector && node.querySelector(".movie-title")) return node;
+        node = node.parentElement;
+      }
+      return poster.parentElement || poster;
+    }
+
+    function posterUrl(poster) {
+      const image = poster.matches("img") ? poster : poster.querySelector("img");
+      const raw = image
+        ? image.currentSrc || image.getAttribute("data-src") || image.getAttribute("data-lazy-src") || image.getAttribute("src")
+        : poster.getAttribute("data-src") || poster.getAttribute("data-lazy-src") || poster.getAttribute("href");
+      if (raw) {
+        try {
+          const url = new URL(raw, SOURCE_URL);
+          if (url.protocol === "http:" || url.protocol === "https:") return url.href;
+        } catch { }
+      }
+      const background = poster.style && poster.style.backgroundImage;
+      const match = background && background.match(/url\(["']?(.*?)["']?\)/i);
+      if (match) {
+        try { return new URL(match[1], SOURCE_URL).href; } catch { }
+      }
+      return "";
+    }
+
+    function genreFrom(card) {
+      for (const label of card.querySelectorAll(".text-label")) {
+        if (!/^Genres?:$/i.test(cleanText(label.textContent))) continue;
+        const container = label.parentElement;
+        const value = container ? cleanText(container.textContent).replace(/^Genres?:\s*/i, "") : "";
+        return value || "N/A";
+      }
+      return "N/A";
+    }
+
+    function ratingFrom(card) {
+      const rating = card.querySelector(".movie-rating");
+      if (!rating) return "";
+      const label = rating.getAttribute("aria-label") || "";
+      const match = label.match(/rated\s+([\d.]+)\s+out\s+of\s+([\d.]+)/i);
+      if (match) return `${match[1]}/${match[2]}`;
+      const value = cleanText(rating.textContent);
+      if (!value) return "";
+      return /^n\/a$/i.test(value) ? "N/A" : `${value}/10`;
+    }
+
+    function movieUrlFrom(card) {
+      const link = card.matches("a[href]") ? card : card.querySelector("a[href]");
+      if (!link) return "";
+      try {
+        const url = new URL(link.getAttribute("href"), SOURCE_URL);
+        return url.protocol === "http:" || url.protocol === "https:" ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
+
+    function extractMovies(html) {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const unique = new Set();
+      return [...doc.querySelectorAll(".movie-poster")].map(poster => {
+        const card = findMovieCard(poster);
+        const titleElement = card.querySelector(".movie-title");
+        const title = cleanText(titleElement && titleElement.textContent) || "Untitled";
+        const image = poster.matches("img") ? poster : poster.querySelector("img");
+        const key = `${title}|${posterUrl(poster) || (image && image.alt) || ""}`;
+        if (unique.has(key)) return null;
+        unique.add(key);
+        return {
+          title,
+          url: movieUrlFrom(card),
+          poster: posterUrl(poster),
+          genre: genreFrom(card),
+          rating: ratingFrom(card)
+        };
+      }).filter(Boolean);
+    }
+
+    function extractDetails(html, movie) {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const details = {
+        director: "",
+        starring: "",
+        quality: "",
+        language: "",
+        updated: "",
+        synopsis: ""
+      };
+
+      for (const item of doc.querySelectorAll(".movie-info li")) {
+        const label = cleanText(item.querySelector("strong")?.textContent).replace(/:$/, "").toLowerCase();
+        const value = cleanText(item.querySelector("span")?.textContent);
+        if (label === "director") details.director = value;
+        if (label === "starring") details.starring = value;
+        if (label === "quality") details.quality = value;
+        if (label === "language") details.language = value;
+        if (label === "last updated") details.updated = value;
+      }
+
+      const synopsis = doc.querySelector(".movie-synopsis");
+      if (synopsis) details.synopsis = cleanText(synopsis.textContent).replace(/^Synopsis:\s*/i, "");
+      const infoPoster = doc.querySelector(".movie-info-container img");
+      return {
+        ...movie,
+        poster: infoPoster ? new URL(infoPoster.getAttribute("src"), movie.url).href : movie.poster,
+        rating: detailsRating(doc) || movie.rating,
+        ...details
+      };
+    }
+
+    function detailsRating(doc) {
+      for (const item of doc.querySelectorAll(".movie-info li")) {
+        if (/^Movie Rating:$/i.test(cleanText(item.querySelector("strong")?.textContent))) {
+          return cleanText(item.querySelector("span")?.textContent);
+        }
+      }
+      return "";
+    }
+
+    function matchesSearch(movie) {
+      const query = cleanText(search.value).toLowerCase();
+      return !query || `${movie.title} ${movie.genre}`.toLowerCase().includes(query);
+    }
+
+    function makeMovieCard(movie, collectionTitle) {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "card";
+      card.setAttribute("aria-label", `Show details for ${movie.title}`);
+      if (movie.url) card.dataset.movieUrl = movie.url;
+      card.addEventListener("click", () => openMovieDetails(movie, collectionTitle));
+
+      const poster = document.createElement("div");
+      poster.className = "poster";
+      if (movie.poster) {
+        const image = document.createElement("img");
+        image.src = movie.poster;
+        image.alt = `${movie.title} poster`;
+        image.loading = "lazy";
+        image.onerror = () => {
+          image.remove();
+          const placeholder = document.createElement("div");
+          placeholder.className = "poster-placeholder";
+          placeholder.textContent = movie.title;
+          poster.prepend(placeholder);
+        };
+        poster.append(image);
+      } else {
+        const placeholder = document.createElement("div");
+        placeholder.className = "poster-placeholder";
+        placeholder.textContent = movie.title;
+        poster.append(placeholder);
+      }
+      if (movie.rating) {
+        const rating = document.createElement("span");
+        rating.className = "rating";
+        rating.textContent = movie.rating;
+        poster.append(rating);
+      }
+
+      const title = document.createElement("h3");
+      title.className = "movie-title";
+      title.textContent = movie.title;
+      const genre = document.createElement("p");
+      genre.className = "genre";
+      genre.textContent = `Genres: ${movie.genre}`;
+      card.append(poster, title, genre);
+      return card;
+    }
+
+    function handleArrowNavigation(event) {
+      const direction = { ArrowLeft: "left", ArrowRight: "right", ArrowUp: "up", ArrowDown: "down" }[event.key];
+      if (!direction || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+
+      let card = event.target.closest(".card, .similar-card");
+      if (!card) {
+        card = document.querySelector(movieDialog.open ? "#similar-movies .similar-card" : "#latest-movies .card");
+        if (!card) return;
+        event.preventDefault();
+        focusAndScrollCard(card);
+        return;
+      }
+
+      const row = card.closest(".grid, .similar-grid");
+      if (!row) return;
+      event.preventDefault();
+
+      let target;
+      if (direction === "left" || direction === "right") {
+        const cards = [...row.querySelectorAll(":scope > .card, :scope > .similar-card")];
+        const currentIndex = cards.indexOf(card);
+        const index = (currentIndex + (direction === "left" ? -1 : 1) + cards.length) % cards.length;
+        target = cards[index];
+      } else if (row.classList.contains("grid")) {
+        const rows = [...document.querySelectorAll(".grid")];
+        const rowIndex = rows.indexOf(row) + (direction === "up" ? -1 : 1);
+        const destination = rows[rowIndex];
+        if (destination) {
+          const cards = destination.querySelectorAll(":scope > .card");
+          const currentIndex = [...row.querySelectorAll(":scope > .card")].indexOf(card);
+          target = cards[Math.min(currentIndex, cards.length - 1)];
+        }
+      }
+      if (target) {
+        focusAndScrollCard(target);
+
+      }
+    }
+
+    function setDetailValue(list, label, value) {
+      if (!value) return;
+      const term = document.createElement("dt");
+      term.textContent = label;
+      const description = document.createElement("dd");
+      description.textContent = value;
+      list.append(term, description);
+    }
+
+    function resetMovieVideo() {
+      playMovie.disabled = !activeMovie?.url;
+      downloadMovie.disabled = !activeMovie?.url;
+      videoQuality.replaceChildren();
+      videoQuality.disabled = true;
+      videoQualityWrap.hidden = true;
+      downloadOptions.replaceChildren();
+      downloadList.hidden = true;
+      activeVideoChoices = [];
+      selectedVideo = null;
+      videoLinksLoading = false;
+      pendingPlayback = false;
+      pendingDownload = false;
+      playLoadingScreen.hidden = true;
+      detailVideoStatus.textContent = "";
+    }
+
+    function selectVideoChoice() {
+      selectedVideo = activeVideoChoices[Number(videoQuality.value)] || null;
+      if (!activeMovie || !selectedVideo) return;
+
+      playMovie.disabled = false;
+      detailVideoStatus.textContent = `Ready to play · ${selectedVideo.label || "Video"}`;
+    }
+
+    function showDownloadChoices() {
+      downloadOptions.replaceChildren(...activeVideoChoices.map((choice, index) => {
+        const link = document.createElement("a");
+        const extension = new URL(choice.url).pathname.match(/\.[a-z0-9]{2,5}$/i)?.[0] || ".mp4";
+        link.className = "download-option";
+        link.href = choice.url;
+        link.download = `${activeMovie.title.replace(/[^\w.-]+/g, "_")}-${index + 1}${extension}`;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = choice.label || `Quality ${index + 1}`;
+        return link;
+      }));
+      downloadList.hidden = false;
+      downloadPopupClose.focus();
+    }
+
+    function closeDownloadChoices() {
+      downloadList.hidden = true;
+      downloadMovie.focus();
+    }
+
+    function openVideoPlayer(choice) {
+      const playerURL = new URL("./video.html", window.location.href);
+      playerURL.searchParams.set("title", activeMovie.title);
+      playerURL.searchParams.set("url", choice.url);
+      playerURL.searchParams.set("quality", choice.label || "Video");
+      playerURL.searchParams.set("qualities", JSON.stringify(
+        activeVideoChoices.map(({ label, url }) => ({ label, url }))
+      ));
+      playerURL.searchParams.set("source_url", activeMovie.url);
+      window.location.assign(playerURL.href);
+    }
+
+    function filterVideoChoices(videos) {
+      const byResolution = new Map();
+      for (const video of videos || []) {
+        if (!video?.url || !/\.php(?:$|[?#])/i.test(video.url)) continue;
+        const label = String(video.label || "");
+        const resolution = Number(video.resolution) || Number((`${label} ${video.url}`).match(/(?:^|\D)(2160|1440|1080|720|480|360|240)p?(?:\D|$)/i)?.[1]) || 0;
+        const sizeMatch = (`${label} ${video.url}`).match(/(\d+(?:[.,]\d+)?)\s*(GB|MB)\b/i);
+        const size = sizeMatch ? `${sizeMatch[1]} ${sizeMatch[2].toUpperCase()}` : "";
+        const sizeInMegabytes = sizeMatch
+          ? Number(sizeMatch[1].replace(",", ".")) * (sizeMatch[2].toUpperCase() === "GB" ? 1024 : 1)
+          : 0;
+        const formattedLabel = resolution
+          ? `${resolution}p HD${size ? ` (${size})` : ""}`
+          : `${label || "Video"}${size && !label.match(/(?:GB|MB)\b/i) ? ` (${size})` : ""}`;
+        const candidate = { ...video, resolution, size, label: formattedLabel };
+        const current = byResolution.get(resolution);
+        const candidatePriority = [
+          Number(Boolean(size) && /\bHD\b/i.test(label)),
+          Number(Boolean(size)),
+          Number(/\bHD\b/i.test(label)),
+          sizeInMegabytes
+        ];
+        const currentPriority = current?.priority || [-1, -1, -1, -1];
+        const preferred = candidatePriority.some((value, index) =>
+          value !== currentPriority[index] &&
+          candidatePriority.slice(0, index).every((previous, previousIndex) => previous === currentPriority[previousIndex]) &&
+          value > currentPriority[index]
+        );
+        if (!current || preferred) {
+          byResolution.set(resolution, { ...candidate, priority: candidatePriority });
+        }
+      }
+
+      return [...byResolution.values()]
+        .sort((left, right) => right.resolution - left.resolution)
+        .map(({ priority, ...video }) => video);
+    }
+
+    function videoResolution(video) {
+      return Number(video?.resolution) ||
+        Number((`${video?.label || ""} ${video?.url || ""}`).match(/(?:^|\D)(2160|1440|1080|720|480|360|240)p?(?:\D|$)/i)?.[1]) ||
+        0;
+    }
+
+    function videoChoiceLabel(movie, choice, resolution) {
+      const source = `${movie.title} ${choice.label || ""} ${choice.url || ""}`;
+      const season = source.match(/\bseason\s*(\d+)|\bS\s*(\d+)\b/i);
+      const episode = source.match(/\b(?:episodes?|epi|ep)\s*[\s.#:_-]*(\d+)|\bE\s*(\d+)\b/i);
+      if (!season || !episode) {
+        return `${movie.title}${resolution ? ` ${resolution}p` : ""}`;
+      }
+
+      const seasonNumber = season[1] || season[2];
+      const episodeNumber = episode[1] || episode[2];
+      const title = String(movie.title)
+        .replace(/\b(?:19|20)\d{2}\b/g, "")
+        .replace(/\bseason\s*\d+\b/gi, "")
+        .replace(/\bS\s*\d+\b/gi, "")
+        .replace(/\(?\s*(?:episodes?|epi|ep)\s*[\s.#:_-]*\d+\s*\)?/gi, "")
+        .replace(/\bE\s*\d+\b/gi, "")
+        .replace(/\s+/g, " ")
+        .replace(/^[\s._-]+|[\s._()-]+$/g, "")
+        .trim();
+
+      return `${title} S${seasonNumber} E${episodeNumber}${resolution ? ` ${resolution}p` : ""}`;
+    }
+
+    async function getMovieVideoPages(movieUrl) {
+      return window.GetAllVideoUrl(movieUrl);
+    }
+
+
+    async function loadMovieVideo(movie, requestId) {
+      resetMovieVideo();
+      if (!movie.url) {
+        detailVideoStatus.textContent = "Video links are unavailable for this listing.";
+        return;
+      }
+
+      videoLinksLoading = true;
+      try {
+        let choices = videoLinkCache.get(movie.url);
+        if (!choices) {
+          if (typeof window.GetAllVideoUrl !== "function") {
+            throw new Error("The video URL finder could not be loaded.");
+          }
+
+          const result = await getMovieVideoPages(movie.url);
+          if (result.error) throw new Error(result.error);
+
+          choices = [...result.videos]
+            .filter(video => !video.url.startsWith("https://movie"))
+            .sort((left, right) =>
+                videoResolution(right.url) - videoResolution(left.url)
+            );
+
+
+          
+
+
+            function videoResolution(url) {
+    if (!url) return 0;
+
+    let text = String(url);
+
+    // Extract Markdown URL
+    const markdown = text.match(/\]\((https?:\/\/.*?)(?:\s+["'].*)?\)/i);
+    if (markdown) text = markdown[1];
+
+    // Remove Markdown escaping
+    text = text.replace(/\\_/g, "_").replace(/\\&/g, "&");
+
+    // Decode URL
+    try {
+        text += " " + decodeURIComponent(text);
+    } catch {}
+
+    // Decode Base64 download parameters
+    try {
+        const parsed = new URL(text.split(/\s/)[0]);
+
+        for (const key of ["dl", "url", "file", "path"]) {
+            const value = parsed.searchParams.get(key);
+            if (!value) continue;
+
+            try {
+                text += " " + atob(value);
+            } catch {}
+        }
+    } catch {}
+
+    // Detect resolution anywhere in extracted text
+    const match = text.match(
+        /(?:2160|1440|1080|720|480|360|240)\s*p?/i
+    );
+
+    return match ? parseInt(match[0]) : 0;
+}
+          for (const video of choices) {
+              video.resolution = videoResolution(video.url);
+          }
+
+          if (!choices.length) {
+            const failedRequests = result.stats?.failedRequests || 0;
+            throw new Error(failedRequests
+              ? "Could not access the movie's video links. The source may block browser requests (CORS)."
+              : "No PHP video links were found for this movie.");
+          }
+        }
+
+        if (requestId !== detailRequestId || activeMovie !== movie || !movieDialog.open) return;
+        choices = choices.map(choice => {
+          const resolution = Number(choice.resolution) || videoResolution(choice);
+          return {
+            ...choice,
+            resolution,
+            label: videoChoiceLabel(movie, choice, resolution)
+          };
+        });
+        videoLinkCache.set(movie.url, choices);
+        activeVideoChoices = choices;
+        videoQuality.replaceChildren(...choices.map((choice, index) => {
+          const option = document.createElement("option");
+          option.value = String(index);
+          option.textContent = choice.label || `Quality ${index + 1}`;
+          return option;
+        }));
+        videoQuality.value = "0";
+        videoQuality.disabled = false;
+        videoQualityWrap.hidden = false;
+        selectVideoChoice();
+        videoLinksLoading = false;
+        if (pendingDownload) {
+          pendingDownload = false;
+          showDownloadChoices();
+        }
+        if (pendingPlayback) {
+          pendingPlayback = false;
+          openVideoPlayer(activeVideoChoices[0]);
+        }
+      } catch (error) {
+        if (requestId !== detailRequestId || activeMovie !== movie || !movieDialog.open) return;
+        videoLinksLoading = false;
+        pendingPlayback = false;
+        playLoadingScreen.hidden = true;
+        detailVideoStatus.textContent = `Could not load video links. ${error.message}`;
+      }
+    }
+
+    async function playSelectedMovie() {
+      if (!activeMovie || !activeMovie.url) return;
+      if (videoLinksLoading) {
+        pendingPlayback = true;
+        playLoadingScreen.hidden = false;
+        return;
+      }
+      if (!selectedVideo || !activeVideoChoices.length) {
+        detailVideoStatus.textContent = "No video link is ready to play.";
+        return;
+      }
+
+      openVideoPlayer(selectedVideo);
+    }
+
+    function downloadSelectedMovie() {
+      if (!activeMovie || !activeMovie.url) return;
+      if (videoLinksLoading) {
+        pendingDownload = true;
+        detailVideoStatus.textContent = "Please wait, loading links...";
+        return;
+      }
+      if (!activeVideoChoices.length) {
+        detailVideoStatus.textContent = "No download links are available.";
+        return;
+      }
+      showDownloadChoices();
+    }
+
+    function focusMovieCard(movie) {
+      if (!movie?.url) return;
+      const card = [...document.querySelectorAll(".card")].find(candidate => candidate.dataset.movieUrl === movie.url);
+      if (card) card.focus();
+    }
+
+    function focusAndScrollCard(card) {
+      card.focus({ preventScroll: true });
+      card.scrollIntoView({ behavior: "auto", block: "nearest", inline: "nearest" });
+    }
+
+    function renderMovieDetails(movie, collectionTitle) {
+      movieDetails.replaceChildren();
+      const layout = document.createElement("div");
+      layout.className = "detail-layout";
+      const poster = document.createElement("div");
+      poster.className = "detail-poster";
+      if (movie.poster) {
+        const image = document.createElement("img");
+        image.src = movie.poster;
+        image.alt = `${movie.title} poster`;
+        poster.append(image);
+      }
+
+      const info = document.createElement("div");
+      const collection = document.createElement("p");
+      collection.className = "detail-collection";
+      collection.textContent = collectionTitle;
+      const title = document.createElement("h1");
+      title.className = "detail-title";
+      title.id = "detail-title";
+      title.textContent = movie.title;
+      info.append(collection, title);
+      const fields = document.createElement("dl");
+      fields.className = "detail-list";
+      setDetailValue(fields, "Rating", movie.rating);
+      setDetailValue(fields, "Genres", movie.genre);
+      setDetailValue(fields, "Director", movie.director);
+      setDetailValue(fields, "Starring", movie.starring);
+      setDetailValue(fields, "Language", movie.language);
+      setDetailValue(fields, "Quality", movie.quality);
+      setDetailValue(fields, "Last updated", movie.updated);
+      info.append(fields);
+      layout.append(poster, info);
+      movieDetails.append(layout);
+
+      if (movie.synopsis) {
+        const synopsis = document.createElement("p");
+        synopsis.className = "detail-synopsis";
+        synopsis.textContent = movie.synopsis;
+        movieDetails.append(synopsis);
+      }
+    }
+
+    function renderSimilarMovies(movie) {
+      const genres = new Set(movie.genre.split(",").map(cleanText).filter(value => value && !/^n\/a$/i.test(value)).map(value => value.toLowerCase()));
+      const similar = movies
+        .filter(candidate => candidate !== movie && candidate.url)
+        .map(candidate => ({
+          movie: candidate,
+          sharedGenres: candidate.genre.split(",").map(cleanText).filter(value => genres.has(value.toLowerCase())).length
+        }))
+        .filter(candidate => candidate.sharedGenres > 0)
+        .sort((a, b) => b.sharedGenres - a.sharedGenres || a.movie.title.localeCompare(b.movie.title))
+        .slice(0, 10);
+
+      similarMovies.replaceChildren();
+      for (const { movie: candidate } of similar) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "similar-card";
+        button.setAttribute("aria-label", `Show details for ${candidate.title}`);
+        const image = document.createElement("img");
+        image.src = candidate.poster;
+        image.alt = "";
+        image.loading = "lazy";
+        image.onerror = () => image.remove();
+        const title = document.createElement("span");
+        title.textContent = candidate.title;
+        button.append(image, title);
+        button.addEventListener("click", () => openMovieDetails(candidate, "More like this"));
+        similarMovies.append(button);
+      }
+      if (!similar.length) {
+        const message = document.createElement("p");
+        message.className = "detail-status";
+        message.textContent = "No similar movies are available in the loaded listings.";
+        similarMovies.append(message);
+      }
+    }
+
+    async function openMovieDetails(movie, collectionTitle) {
+      const wasOpen = movieDialog.open;
+      activeMovie = movie;
+      backgroundLoadPaused = true;
+      backgroundPageController?.abort();
+      if (!wasOpen) lastFocusedMovie = movie;
+      detailRequestId++;
+      const requestId = detailRequestId;
+      const baseDetails = movie.details || movie;
+      renderMovieDetails(baseDetails, collectionTitle);
+      renderSimilarMovies(movie);
+      detailStatus.textContent = movie.details
+        ? ""
+        : movie.url
+          ? "Loading full movie details..."
+          : "Extended details are unavailable for this listing.";
+      if (!wasOpen) movieDialog.showModal();
+      dialogClose.focus();
+      const priorityLoads = [loadMovieVideo(movie, requestId)];
+
+      if (movie.url && !movie.details) {
+        priorityLoads.push((async () => {
+          try {
+            const details = extractDetails(await fetchSourceHtml(movie.url), movie);
+            movie.details = details;
+            saveMovieCache();
+            if (requestId !== detailRequestId || activeMovie !== movie) return;
+            renderMovieDetails(details, collectionTitle);
+            detailStatus.textContent = "";
+          } catch (error) {
+            if (requestId !== detailRequestId || activeMovie !== movie) return;
+            detailStatus.textContent = `Showing listing details; full details could not be loaded. ${error.message}`;
+          }
+        })());
+      }
+
+      await Promise.all(priorityLoads);
+      if (requestId === detailRequestId && activeMovie === movie && movieDialog.open) {
+        resumeBackgroundLoading();
+      }
+    }
+
+    function render() {
+      const focusedCard = document.activeElement?.classList.contains("card")
+        ? { url: document.activeElement.dataset.movieUrl }
+        : null;
+      const latest = movies.filter(matchesSearch).slice(0, PAGE_SIZE);
+      latestCount.textContent = `${latest.length} ${latest.length === 1 ? "movie" : "movies"}`;
+      latestGrid.replaceChildren();
+      latest.forEach(movie => latestGrid.append(makeMovieCard(movie, "Latest Movies")));
+      genreSections.replaceChildren();
+
+      const byGenre = new Map();
+      for (const movie of movies) {
+        for (const genre of movie.genre.split(",")) {
+          const name = cleanText(genre);
+          if (!name || /^n\/a$/i.test(name)) continue;
+          if (!byGenre.has(name)) byGenre.set(name, []);
+          byGenre.get(name).push(movie);
+        }
+      }
+
+      for (const [name, genreMovies] of [...byGenre.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+        if (genreMovies.length < PAGE_SIZE) continue;
+        const shown = genreMovies.filter(matchesSearch).slice(0, PAGE_SIZE);
+        if (!shown.length) continue;
+
+        const section = document.createElement("section");
+        section.className = "movie-section";
+        const heading = document.createElement("div");
+        heading.className = "section-heading";
+        const titleWrap = document.createElement("div");
+        titleWrap.className = "section-title-wrap";
+        const title = document.createElement("h2");
+        title.textContent = `${name} Movies`;
+        const count = document.createElement("span");
+        count.className = "count";
+        count.textContent = `${shown.length} / ${PAGE_SIZE}`;
+        titleWrap.append(title, count);
+        heading.append(titleWrap);
+        const row = document.createElement("div");
+        row.className = "grid";
+        row.setAttribute("aria-label", `${name} movies`);
+        shown.forEach(movie => row.append(makeMovieCard(movie, `${name} Movies`)));
+        section.append(heading, row);
+        genreSections.append(section);
+      }
+      if (focusedCard?.url) focusMovieCard(focusedCard);
+    }
+
+    function allGenreRowsAreFull() {
+      const counts = new Map();
+      for (const movie of movies) {
+        for (const genre of movie.genre.split(",")) {
+          const name = cleanText(genre);
+          if (!name || /^n\/a$/i.test(name)) continue;
+          counts.set(name, (counts.get(name) || 0) + 1);
+        }
+      }
+      return counts.size > 0 && [...counts.values()].every(total => total >= PAGE_SIZE);
+    }
+
+    async function loadNextPage() {
+      const controller = new AbortController();
+      backgroundPageController = controller;
+      try {
+        if (!backgroundLoadPaused) {
+          status.textContent = `Filling genre rows with 10 movies... (loading page ${sourcePage})`;
+        }
+        const url = new URL(SOURCE_URL);
+        url.searchParams.set("page", String(sourcePage));
+        const nextMovies = extractMovies(await fetchSourceHtml(url.href, { signal: controller.signal }));
+        if (backgroundLoadPaused || controller.signal.aborted) return null;
+        const knownUrls = new Set(movies.map(movie => movie.url).filter(Boolean));
+        const additions = nextMovies.filter(movie => !movie.url || !knownUrls.has(movie.url));
+        if (!additions.length) {
+          hasMoreSourcePages = false;
+          return false;
+        }
+
+        additions.forEach(movie => {
+          if (movie.url) knownUrls.add(movie.url);
+          movies.push(movie);
+        });
+        sourcePage++;
+        render();
+        saveMovieCache();
+        return true;
+      } catch (error) {
+        if (controller.signal.aborted) return null;
+        hasMoreSourcePages = false;
+        status.classList.add("error");
+        status.textContent = `Could not load more movie pages. ${error.message}`;
+        return false;
+      } finally {
+        if (backgroundPageController === controller) backgroundPageController = null;
+      }
+    }
+
+    function waitForBackgroundResume() {
+      return new Promise(resolve => {
+        backgroundResume = resolve;
+      });
+    }
+
+    function startBackgroundLoading() {
+      if (backgroundLoadPromise || !initialPageLoaded) return;
+      backgroundLoadPromise = (async () => {
+        loadingPages = true;
+        if (!backgroundLoadPaused) status.textContent = "Filling genre rows with 10 movies...";
+        while (hasMoreSourcePages && !allGenreRowsAreFull()) {
+          if (backgroundLoadPaused) {
+            await waitForBackgroundResume();
+            continue;
+          }
+          const loaded = await loadNextPage();
+          if (loaded === false && !backgroundLoadPaused) break;
+        }
+        loadingPages = false;
+        if (!backgroundLoadPaused && !status.classList.contains("error")) {
+          status.textContent = hasMoreSourcePages
+            ? ""
+            : "All available pages checked. Showing genres with at least 10 movies.";
+        }
+      })().finally(() => {
+        backgroundLoadPromise = null;
+        if (!backgroundLoadPaused && initialPageLoaded && hasMoreSourcePages && !allGenreRowsAreFull()) {
+          startBackgroundLoading();
+        }
+      });
+    }
+
+    function resumeBackgroundLoading() {
+      backgroundLoadPaused = false;
+      if (backgroundResume) {
+        const resume = backgroundResume;
+        backgroundResume = null;
+        resume();
+      }
+      if (pendingFreshMovies) {
+        movies = pendingFreshMovies;
+        pendingFreshMovies = null;
+        sourcePage = 2;
+        hasMoreSourcePages = true;
+        render();
+        saveMovieCache();
+      }
+      startBackgroundLoading();
+    }
+
+    function applyFreshMovies(freshMovies) {
+      movies = freshMovies;
+      sourcePage = 2;
+      hasMoreSourcePages = true;
+      render();
+      saveMovieCache();
+    }
+
+    async function loadMovies() {
+      hasCachedMovies = restoreMovieCache();
+      try {
+        const freshMovies = extractMovies(await fetchSourceHtml(SOURCE_URL));
+        if (!freshMovies.length) {
+          status.textContent = movies.length
+            ? "No new movie posters were found. Showing saved movies."
+            : "The source page loaded, but no movie posters were found.";
+          return;
+        }
+        if (activeMovie) {
+          pendingFreshMovies = freshMovies;
+        } else {
+          applyFreshMovies(freshMovies);
+        }
+
+        initialPageLoaded = true;
+        if (pendingFreshMovies && !movieDialog.open) {
+          resumeBackgroundLoading();
+        } else if (!movieDialog.open) {
+          status.textContent = "Filling genre rows with 10 movies...";
+          startBackgroundLoading();
+        }
+      } catch (error) {
+        status.classList.add("error");
+        status.textContent = hasCachedMovies
+          ? `Could not refresh movie listings. Showing saved movies. ${error.message}`
+          : `Could not load movie listings. ${error.message} The CORS proxy may be unavailable or the source may have rejected the request.`;
+      }
+    }
+
+    document.addEventListener("keydown", handleArrowNavigation);
+    search.addEventListener("input", render);
+    dialogClose.addEventListener("click", () => movieDialog.close());
+    playMovie.addEventListener("click", playSelectedMovie);
+    downloadMovie.addEventListener("click", downloadSelectedMovie);
+    videoQuality.addEventListener("change", selectVideoChoice);
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape" || !movieDialog.open) return;
+      if (!downloadList.hidden) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        closeDownloadChoices();
+        return;
+      }
+      movieDialog.close();
+    });
+    downloadPopupClose.addEventListener("click", closeDownloadChoices);
+    downloadList.addEventListener("click", event => {
+      if (event.target === downloadList) closeDownloadChoices();
+    });
+    movieDialog.addEventListener("cancel", event => {
+      event.preventDefault();
+      movieDialog.close();
+    });
+    movieDialog.addEventListener("click", event => {
+      if (event.target === movieDialog) movieDialog.close();
+    });
+    movieDialog.addEventListener("close", () => {
+      detailRequestId++;
+      resetMovieVideo();
+      activeMovie = null;
+      resumeBackgroundLoading();
+      const returnFocus = lastFocusedMovie;
+      lastFocusedMovie = null;
+      setTimeout(() => {
+        if (!returnFocus) return;
+        if (loadingPages) {
+          pendingFocusMovie = returnFocus;
+          return;
+        }
+        focusMovieCard(returnFocus);
+      }, 0);
+    });
+    loadMovies();
+  </script>
+</body>
+</html>
